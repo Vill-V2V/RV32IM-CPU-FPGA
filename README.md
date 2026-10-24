@@ -517,7 +517,7 @@ set_clock_groups -asynchronous \
 │     └─ constrs_1/new/                # 时序与引脚约束
 │
 ├─ docs/
-│  ├─ CICC1003583 设计报告.docx
+│  ├─ 
 │  ├─ 图1-CPU整体架构图.png
 │  ├─ 图2-CPU内部五级流水线数据通路原理图.png
 │  ├─ 图3-RV32I核心数据前推网络微架构拓扑图.png
@@ -611,11 +611,9 @@ rv32im_cpu/software/my_first_os
 
 ---
 
-## 设计文档与图片
+## 图片
 
-完整设计报告：
 
-- [CICC1003583 设计报告](<./docs/CICC1003583 设计报告.docx>)
 
 图片素材：
 
