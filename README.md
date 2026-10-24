@@ -2,7 +2,7 @@
 
 
 
-本项目是初赛 RV32I 五级流水线 CPU 的升级版本，在保持机器模式 CSR、Trap 异常处理和定时器中断的基础上，扩展了 **RV32M 整数乘除法** 与 **Zbkx XPERM4** 指令，并对流水线前端、访存旁路和分支预测进行了架构级优化。项目基于 Verilog / SystemVerilog 实现，支持 105 MHz 目标时序收敛。
+本项目是 RV32I 五级流水线 CPU 的升级版本，在保持机器模式 CSR、Trap 异常处理和定时器中断的基础上，扩展了 **RV32M 整数乘除法** 与 **Zbkx XPERM4** 指令，并对流水线前端、访存旁路和分支预测进行了架构级优化。项目基于 Verilog / SystemVerilog 实现，支持 105 MHz 目标时序收敛。
 仅供学习参考不可用于竞赛或作业
 
 - **指令集**：RV32I + RV32M + Zicsr + Zbkx XPERM4
