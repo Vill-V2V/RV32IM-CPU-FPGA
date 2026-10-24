@@ -1,0 +1,47 @@
+﻿# Vivado generated
+.Xil/
+*.jou
+*.log
+*.str
+*.dcp
+*.bit
+*.ltx
+*.rpt
+*.vcd
+*.wdb
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.mif
+*.xpr.bak
+
+# MounRiver / Eclipse build output
+obj/
+Debug/
+Release/
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.map
+*.d
+*.lst
+
+# IDE / OS
+.vscode/
+.idea/
+.metadata/
+.mrs/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Archives / installers
+*.zip
+*.rar
+*.7z
+*.exe
