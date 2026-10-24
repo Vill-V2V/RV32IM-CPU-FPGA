@@ -1,7 +1,6 @@
 ﻿# 面向嵌入式实时应用的轻量化 RV32IM 特权架构 CPU
 
-> 第十届全国大学生集成电路创新创业大赛 · "竞业达"企业命题参赛作品  
-> **RV32IM/Zicsr Five-Stage Pipelined Processor with Digital-Twin SoC**
+
 
 本项目是初赛 RV32I 五级流水线 CPU 的升级版本，在保持机器模式 CSR、Trap 异常处理和定时器中断的基础上，扩展了 **RV32M 整数乘除法** 与 **Zbkx XPERM4** 指令，并对流水线前端、访存旁路和分支预测进行了架构级优化。项目基于 Verilog / SystemVerilog 实现，支持 105 MHz 目标时序收敛。
 
@@ -641,3 +640,4 @@ rv32im_cpu/software/my_first_os
 ## License
 
 本仓库暂未指定开源许可证。如需开源，可添加 MIT License 或 Apache-2.0 License。
+##仅供学习参考不可用于比赛或作业
