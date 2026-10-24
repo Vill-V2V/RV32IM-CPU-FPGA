@@ -1,0 +1,64 @@
+`timescale 1ns / 1ps
+// 34周期状态机除法器 (试商法，极致省资源)
+module Divider (
+    input  wire        clk,
+    input  wire        rst,
+    input  wire        start,
+    input  wire [31:0] dividend, // 被除数
+    input  wire [31:0] divisor,  // 除数
+    input  wire        is_signed,// 1: 有符号除法, 0: 无符号除法
+    output reg  [31:0] quotient, // 商
+    output reg  [31:0] remainder,// 余数
+    output reg         ready
+);
+
+    reg [5:0]  count;
+    reg [31:0] reg_q, reg_r, reg_b;
+    reg sign_q, sign_r;
+    
+    wire [31:0] abs_dividend = (is_signed && dividend[31]) ? (~dividend + 1) : dividend;
+    wire [31:0] abs_divisor  = (is_signed && divisor[31])  ? (~divisor + 1)  : divisor;
+    
+    wire [32:0] sub_res = {reg_r[31:0], reg_q[31]} - {1'b0, reg_b};
+
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            count <= 0;
+            ready <= 0;
+        end else begin
+            if (start && count == 0) begin
+                // 初始化阶段
+                reg_q <= abs_dividend;
+                reg_r <= 0;
+                reg_b <= abs_divisor;
+                sign_q <= is_signed && (dividend[31] ^ divisor[31]);
+                sign_r <= is_signed && dividend[31];
+                count <= 32;
+                ready <= 0;
+                // 处理除零异常
+                if (divisor == 0) begin
+                    quotient  <= 32'hFFFFFFFF;
+                    remainder <= dividend;
+                    ready     <= 1;
+                    count     <= 0;
+                end
+            end else if (count > 0) begin
+                // 移位减法循环阶段
+                if (sub_res[32]) begin // 不够减
+                    reg_r <= {reg_r[30:0], reg_q[31]};
+                    reg_q <= {reg_q[30:0], 1'b0};
+                end else begin         // 够减
+                    reg_r <= sub_res[31:0];
+                    reg_q <= {reg_q[30:0], 1'b1};
+                end
+                count <= count - 1;
+                if (count == 1) ready <= 1;
+            end else begin
+                ready <= 0;
+                // 附加符号
+                quotient  <= sign_q ? (~reg_q + 1) : reg_q;
+                remainder <= sign_r ? (~reg_r + 1) : reg_r;
+            end
+        end
+    end
+endmodule
